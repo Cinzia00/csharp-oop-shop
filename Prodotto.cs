@@ -11,66 +11,85 @@ namespace csharp_oop_shop
     internal class Prodotto
     {
      
-        private int code;
-        private string name;
-        private string description;
+        public int Code { get; }
+
+        public string name;
+
         private float price;
-        private int vat = 22;
+        public string Description { get; set; }
+        public int Vat { get; set; } = 22;
 
 
-
-
-        //GETTER
-
-        public int GetCode()
+        public float Price
         {
-            return this.code;
-        }
+            get
+            {
+                return price;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    Console.WriteLine("Il prezzo inseerito non è valido");
+                } else
+                {
+                    this.price = value;
+                }
 
-        public string GetName()
-        {
-            return this.name;
-        }
-
-        public string GetDescription()
-        {
-            return this.description;
-        }
-
-        public float GetPrice()
-        {
-            return this.price;
-        }
-
-        public int GetVat()
-        {
-            return this.vat;
+            }
         }
 
 
 
 
-        //SETTER
 
-        public string SetName(string value)
-        {
-            return value;
-        }
 
-        public string SetDescription(string value)
-        {
-            return value;
-        }
 
-        public float SetPrice(float value)
-        {
-            return value;
-        }
+        ////GETTER
 
-        public int SetVat(int value)
-        {
-            return value;
-        }
+        //public int GetCode()
+        //{
+        //    return this.code;
+        //}
+
+        //public string GetName()
+        //{
+        //    return this.name;
+        //}
+
+        //public string GetDescription()
+        //{
+        //    return this.description;
+        //}
+
+        //public float GetPrice()
+        //{
+        //    return this.price;
+        //}
+
+        //public int GetVat()
+        //{
+        //    return this.vat;
+        //}
+
+
+
+        ////SETTER
+
+        //public string SetName(string value)
+        //{
+        //    return value;
+        //}
+
+        //public string SetDescription(string value)
+        //{
+        //    return value;
+        //}
+
+        //public float SetPrice(float value)
+        //{
+        //    return value;
+        //}
 
 
 
@@ -80,18 +99,18 @@ namespace csharp_oop_shop
 
         public float basePrice()
         {
-            return price;
+            return Price;
         }
 
         public float vatPrice() 
         {
-            float vatPrice = (price * vat / 100) + price;
+            float vatPrice = (Price * Vat / 100) + Price;
             return vatPrice;
         }
 
         public string extendedName()
         {
-            string extendedName = code + name;
+            string extendedName = Code + name;
             return extendedName;
         }
 
@@ -99,11 +118,10 @@ namespace csharp_oop_shop
 
         public string codePadLeft()
         {
-            string newCode = code.ToString();
-            newCode = code.ToString().PadLeft(8, '0');
+            //string newCode = Code.ToString();
+            string newCode = Code.ToString().PadLeft(8, '0');
             return newCode;
         }
-
 
 
 
@@ -112,10 +130,10 @@ namespace csharp_oop_shop
         public Prodotto(string name, string description, float price)
         {
             Random rnd = new Random();
-            this.code = rnd.Next(0, 999999);
+            this.Code = rnd.Next(0, 999999);
             this.name = name;
-            this.description = description;
-            this.price = price;
+            this.Description = description;
+            this.Price = price;
         }
     }
 }
